@@ -6,7 +6,7 @@ from .common import WhittakerSmoother, Baseline
 
 
 def airpls_baseline(intensities, smoothness_param=100, max_iters=10,
-                    conv_thresh=0.001, verbose=False):
+                    conv_thresh=0.001, verbose=False, whittaker_deriv_order=2):
   '''
   Baseline corr. using adaptive iteratively reweighted penalized least squares.
   Also known as airPLS, 2010.
@@ -14,7 +14,7 @@ def airpls_baseline(intensities, smoothness_param=100, max_iters=10,
   https://code.google.com/p/airpls/
   https://airpls.googlecode.com/svn/trunk/airPLS.py
   '''
-  smoother = WhittakerSmoother(intensities, smoothness_param)
+  smoother = WhittakerSmoother(intensities, smoothness_param, deriv_order=whittaker_deriv_order)
   total_intensity = np.abs(intensities).sum()
   w = np.ones(intensities.shape[0])
   for i in xrange(1, max_iters+1):
