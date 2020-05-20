@@ -44,15 +44,16 @@ def airpls_baseline(intensities, smoothness_param=100, max_iters=10,
 
 class AirPLS(Baseline):
   def __init__(self, smoothness_param=100, max_iters=10,
-               conv_thresh=0.001, verbose=False):
+               conv_thresh=0.001, verbose=False, whittaker_deriv_order=2):
     self.smoothness_ = smoothness_param
     self.max_iters_ = max_iters
     self.conv_thresh_ = conv_thresh
     self.verbose_ = verbose
+    self.whittaker_deriv_order_ = whittaker_deriv_order
 
   def _fit_one(self, bands, intensities):
     return airpls_baseline(intensities, self.smoothness_, self.max_iters_,
-                           self.conv_thresh_, self.verbose_)
+                           self.conv_thresh_, self.verbose_, self.whittaker_deriv_order_)
 
   def param_ranges(self):
     return {

@@ -48,8 +48,7 @@ if use_cython:
       fh.write(tpl.substitute())
 
   extra_args = [
-      '-Ofast', '-march=native', '-ffast-math', '-Wno-unused-function',
-      '-Wno-unreachable-code'
+      '-Ofast', '-march=native', '-ffast-math', # '-Wno-unused-function', '-Wno-unreachable-code'
   ]
   exts = [
       Extension('*', ['superman/distance/_pdist.pyx'],
